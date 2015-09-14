@@ -22,6 +22,22 @@ class PostsController < ApplicationController
 	def show
 	end
 
+	def edit
+	end
+
+	def update
+		if @post.udpate post_params
+			redirect_to @post, notice: "yay! successfully save"
+		else
+			render 'edit', notice: "not saved."
+		end
+	end
+
+	def destroy
+		@post.destroy
+		redirect_to posts_path
+	end
+
 	private
 	def post_params
 		params.require(:post).permit(:title, :content)
